@@ -32,12 +32,12 @@ fn chal1_1() {
 //
 
 /// Xor the two iterables together
-fn fixed_xor<'a, I>(iter1: I, iter2: I) -> Result<String, String> 
+fn fixed_xor<'a, I>(iter1: I, iter2: I) -> String
 where 
     I: Iterator<Item = &'a u8>,
 {
     let bytes: Vec<u8> = iter1.zip(iter2).map(|(a, b)| a ^ b).collect();
-    Ok(hex::encode(bytes))
+    hex::encode(bytes)
 }
 
 #[test]
@@ -46,7 +46,7 @@ fn chal1_2() {
         fixed_xor(
             hex::decode("1c0111001f010100061a024b53535009181c").unwrap().iter(),
             hex::decode("686974207468652062756c6c277320657965").unwrap().iter(),
-            ).ok(),
-        Some("746865206b696420646f6e277420706c6179".to_string()),
+            ),
+        "746865206b696420646f6e277420706c6179".to_string(),
         );
 }
